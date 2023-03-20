@@ -1,8 +1,19 @@
 /*
 Theme Name: Bao
 Description: Bao Theme by Mike Smith Design
-Version: 1.0.0
+Version: 2.0.5
 Author: Mike Smith Design
 Author URI: https://mikesmithdesign.co.uk/
-GitHub Theme URI: mikesmithdesign/bao-theme
 */
+
+p a {
+  text-decoration: underline;
+}
+
+.link-boxes .link-box .box-title h2 span {
+  white-space: pre;
+}
+
+.hero .tint {
+  pointer-events: none;
+}

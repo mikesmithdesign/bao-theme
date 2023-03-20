@@ -119,6 +119,23 @@ function theme_customize_register($wp_customize)
 		'label'   => esc_html__('Footer Text Color', 'theme'),
 		'settings' => 'footer_text_color',
 	)));
+	
+	$wp_customize->add_setting('change_tints', array(
+		'default'    => '0'
+	));
+
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'change_tints',
+			array(
+				'label'   => esc_html__('Change Tints?', 'theme'),
+				'section'   => 'colors',
+				'settings'  => 'change_tints',
+				'type'      => 'checkbox',
+			)
+		)
+	);
 
 	$wp_customize->add_section(
 		'fonts',
@@ -229,16 +246,16 @@ function theme_customize_register($wp_customize)
 		public function render_content()
 		{
 ?>
-			<label>
-				<?php if (!empty($this->label)) : ?>
-					<span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
-				<?php endif; ?>
-				<div class="cs-range-value"><?php echo esc_attr($this->value()); ?>px</div>
-				<input data-input-type="range" type="range" <?php $this->input_attrs(); ?> value="<?php echo esc_attr($this->value()); ?>" <?php $this->link(); ?> />
-				<?php if (!empty($this->description)) : ?>
-					<span class="description customize-control-description"><?php echo $this->description; ?></span>
-				<?php endif; ?>
-			</label>
+<label>
+    <?php if (!empty($this->label)) : ?>
+    <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
+    <?php endif; ?>
+    <div class="cs-range-value"><?php echo esc_attr($this->value()); ?>px</div>
+    <input data-input-type="range" type="range" <?php $this->input_attrs(); ?> value="<?php echo esc_attr($this->value()); ?>" <?php $this->link(); ?> />
+    <?php if (!empty($this->description)) : ?>
+    <span class="description customize-control-description"><?php echo $this->description; ?></span>
+    <?php endif; ?>
+</label>
 <?php
 		}
 	}
@@ -337,8 +354,8 @@ add_action('customize_register', 'theme_customize_register');
 
 function scripts()
 {
-	wp_enqueue_style('app', get_template_directory_uri() . '/assets/styles.css', array(), '0.0.5', false);
-	wp_enqueue_script('app', get_template_directory_uri() . '/assets/scripts.js', array(), '0.0.5', true);
+	wp_enqueue_style('app', get_template_directory_uri() . '/assets/styles.css', array(), '0.0.15', false);
+	wp_enqueue_script('app', get_template_directory_uri() . '/assets/scripts.js', array(), '0.0.9', true);
 }
 
 add_action('wp_enqueue_scripts', 'scripts');
@@ -351,3 +368,10 @@ function remove_styles_sections($wp_customize)
 	$wp_customize->remove_section('static_front_page');
 }
 add_action('customize_register', 'remove_styles_sections', 20, 1);
+
+require get_template_directory() . '/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://mrbao.co.uk/bao-theme/info.json',
+	__FILE__, //Full path to the main plugin file or functions.php.
+	'bao-theme'
+);
