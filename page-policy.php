@@ -1,4 +1,6 @@
-<?php get_header();
+<?php
+/* Template Name: Policy Page */
+get_header();
 echo get_template_part('template-parts/part', 'header');
 if (have_rows('page_banner')) : while (have_rows('page_banner')) : the_row();
         $images = get_sub_field('slider');
@@ -19,7 +21,7 @@ endif; ?>
 
 <div class="page-intro careers">
   <div class="container">
-    <?php the_content(); ?>
+    <?php the_field('page_intro'); ?>
   </div>
 </div>
 
