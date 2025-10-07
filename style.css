@@ -17,3 +17,49 @@ p a {
 .hero .tint {
   pointer-events: none;
 }
+
+.page-intro .container h3 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  margin: 0 0 1em;
+}
+
+@media screen and (max-width: 639px) {
+  .page-intro .container h2 {
+    font-size: 1.8rem;
+  }
+}
+
+.page-intro .container ul,
+.page-intro .container ol {
+  font-size: 1.5rem;
+  margin: 0 0 1em;
+  display: inline-block;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.page-intro .container ul li,
+.page-intro .container ol li {
+  margin-bottom: 0.5em;
+}
+
+
+@media screen and (max-width: 1279px) {
+
+  .page-intro .container ul,
+  .page-intro .container ol {
+    font-size: 1.4rem;
+  }
+
+}
+
+
+@media screen and (max-width: 500px) {
+
+  .page-intro .container ul,
+  .page-intro .container ol {
+    font-size: 1.3rem;
+  }
+
+}
